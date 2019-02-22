@@ -1,0 +1,28 @@
+< <h3><%= @cocktail.name %></h3>
+
+<p>Ingredients:</p>
+
+<% @cocktail.ingredients.zip(@cocktail.doses).each do |ingredient, dose| %>
+<li><%=dose.description %>, <%=ingredient.name %> |
+<%= link_to "Delete dose", cocktail_dose_path(@cocktail.id, dose.id),
+        method: :delete,
+        data: { confirm: "Are you sure?" } %></li>
+<% end %>
+
+</br>
+</br>
+
+<%= link_to "Add a dose", new_cocktail_dose_path(@cocktail) %>
+
+</br>
+</br>
+
+<%= link_to "Delete Cocktail", cocktail_path,
+      method: :delete,
+      data: { confirm: "Are you sure?" } %>
+
+</br>
+</br>
+
+
+<%= link_to "Back to list", cocktails_path %>

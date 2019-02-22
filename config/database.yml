@@ -78,8 +78,21 @@ test:
 #   production:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
-production:
+# production:
+#   <<: *default
+#   database: rails-mister-cocktail_production
+#   username: rails-mister-cocktail
+#   password: <%= ENV['RAILS-MISTER-COCKTAIL_DATABASE_PASSWORD'] %>
+
+  default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+
+development:
   <<: *default
-  database: rails-mister-cocktail_production
-  username: rails-mister-cocktail
-  password: <%= ENV['RAILS-MISTER-COCKTAIL_DATABASE_PASSWORD'] %>
+  database: rails-mister-cocktail_development
+
+test:
+  <<: *default
+  database: rails-mister-cocktail_test
